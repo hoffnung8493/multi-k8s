@@ -3,17 +3,17 @@ services:
   - docker
 
 before_install:
-  - docker build -t sihoon/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t hoffnung8493/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true sihoon/react-test npm test
+  - docker run -e CI=true hoffnung8493/react-test npm test
 after_success:
-  - docker build -t sihoon/multi-client ./client
-  - docker build -t sihoon/multi-nginx ./nginx
-  - docker build -t sihoon/multi-server ./server
-  - docker build -t sihoon/multi-worker ./worker
+  - docker build -t hoffnung8493/multi-client ./client
+  - docker build -t hoffnung8493/multi-nginx ./nginx
+  - docker build -t hoffnung8493/multi-server ./server
+  - docker build -t hoffnung8493/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push sihoon/multi-client
-  - docker push sihoon/multi-nginx
-  - docker push sihoon/multi-server
-  - docker push sihoon/multi-worker
+  - docker push hoffnung8493/multi-client
+  - docker push hoffnung8493/multi-nginx
+  - docker push hoffnung8493/multi-server
+  - docker push hoffnung8493/multi-worker
